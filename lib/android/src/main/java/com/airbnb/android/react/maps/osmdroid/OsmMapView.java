@@ -129,7 +129,10 @@ public class OsmMapView extends MapView implements MapView.OnFirstLayoutListener
         mListners.addAll(mListnersCache);
         mListnersCache.clear();
     }
-
+    public void setZoomControlsEnabled(boolean zoomControlsEnabled){
+        this.setBuiltInZoomControls(zoomControlsEnabled);
+    }
+    
     @Override
     protected void onDetachedFromWindow() {
         mListnersCache.addAll(mListners);
