@@ -165,7 +165,10 @@ public class OsmMapManager extends ViewGroupManager<OsmMapView> {
     public void setZoomEnabled(OsmMapView view, boolean zoomEnabled) {
         view.setZoomEnabled(zoomEnabled);
     }
-
+    @ReactProp(name = "zoomControlEnabled", defaultBoolean = false)
+    public void setZoomControlEnabled(OsmMapView view, boolean zoomControlEnabled) {
+        view.setZoomControlsEnabled(zoomControlEnabled);
+    }
     @ReactProp(name = "rotateEnabled", defaultBoolean = false)
     public void setRotateEnabled(OsmMapView view, boolean rotateEnabled) {
         view.setRotateEnabled(rotateEnabled);
