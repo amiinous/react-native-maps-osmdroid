@@ -56,6 +56,7 @@ dependencies {
   compileOnly "com.google.android.gms:play-services-base:$googlePlayServicesVersion"
   compileOnly "com.google.android.gms:play-services-maps:$googlePlayServicesMapsVersion"
   compileOnly "com.google.maps.android:android-maps-utils:$androidMapsUtilsVersion"
+  implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 
   implementation "org.osmdroid:osmdroid-android:${osmdroidVersion}"
 }
