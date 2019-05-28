@@ -110,10 +110,10 @@ public class OsmMapManager extends ViewGroupManager<OsmMapView> {
 //    view.map.setMapStyle(new MapStyleOptions(customMapStyleString));
 //  }
 //
-//  @ReactProp(name = "showsUserLocation", defaultBoolean = false)
-//  public void setShowsUserLocation(AirMapView view, boolean showUserLocation) {
-//    view.setShowsUserLocation(showUserLocation);
-//  }
+     @ReactProp(name = "showsUserLocation", defaultBoolean = false)
+     public void setShowsUserLocation(AirMapView view, boolean showUserLocation) {
+       view.setShowsUserLocation(showUserLocation);
+     }
 //
 //  @ReactProp(name = "showsMyLocationButton", defaultBoolean = true)
 //  public void setShowsMyLocationButton(AirMapView view, boolean showMyLocationButton) {
