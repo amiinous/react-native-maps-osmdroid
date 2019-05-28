@@ -59,6 +59,7 @@ public class OsmMapView extends MapView implements MapView.OnFirstLayoutListener
     private boolean handlePanDrag = false;
     private boolean moveOnMarkerPress = true;
     private boolean initialRegionSet = false;
+    private MyLocationNewOverlay mLocationOverlay;
 
     private final List<OsmMapFeature> features = new ArrayList<>();
     private final Map<Marker, OsmMapMarker> markerMap = new HashMap<>();
@@ -79,7 +80,8 @@ public class OsmMapView extends MapView implements MapView.OnFirstLayoutListener
         this.context = reactContext;
         this.addOnFirstLayoutListener(this);
         this.getController().setZoom(10.0);
-
+        this.mLocationOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(context),this);
+        this.getOverlays().add(this.mLocationOverlay);
         final OsmMapView view = this;
         scaleDetector =
                 new ScaleGestureDetector(reactContext,
@@ -225,6 +227,15 @@ public class OsmMapView extends MapView implements MapView.OnFirstLayoutListener
         });
     }
 
+    public void setShowsUserLocation(boolean showsUserLocation){
+        if(showsUserLocation){
+            this.mLocationOverlay.enableMyLocation();
+        }
+        else{
+            this.mLocationOverlay.disableMyLocation();
+        }
+    }
+    
     public void setInitialRegion(ReadableMap initialRegion) {
         if (!initialRegionSet && initialRegion != null) {
             setRegion(initialRegion);
