@@ -21,6 +21,8 @@ import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.events.EventDispatcher;
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
+import org.osmdroid.util.MapTileIndex;
 
 import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.events.DelayedMapListener;
@@ -113,7 +115,16 @@ public class OsmMapView extends MapView implements MapView.OnFirstLayoutListener
                 });
 
         eventDispatcher = reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher();
-        this.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
+        //this.setTileSource(TileSourceFactory.DEFAULT_TILE_SOURCE);
+        this.setTileSource(new OnlineTileSourceBase("USGS Topo", 3, 30, 256, ".png", new String[] { "https://maps.wikimedia.org/osm-intl/" }) {
+            @Override
+            public String getTileURLString(long pMapTileIndex) {
+                return getBaseUrl() + + MapTileIndex.getZoom(pMapTileIndex)
+                        + "/" + MapTileIndex.getX(pMapTileIndex)
+                        + "/" + MapTileIndex.getY(pMapTileIndex)
+                        + mImageFilenameEnding;
+            }
+        });
         this.setTilesScaledToDpi(true);
         this.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
     }
